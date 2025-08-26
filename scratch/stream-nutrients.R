@@ -54,6 +54,7 @@ prm <- prm_data |>
 
 # add lubridate day column for analysis
 bq1 <- bq1 |> mutate(week = week(sample_date))
+bq2 <- bq2 |> mutate(week = week(sample_date))
 
 #join data
 # not joining data anymore with the potential to use patchwork to piece the different graphs together, may change approach later
