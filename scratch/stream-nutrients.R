@@ -67,6 +67,11 @@ bq1_krma <- bq1 |>
 #this gets the moving average across the 2 values around the variable and only works for 
 
 
+#for loop to create moving average
+#for (krma in bq1_krma){
+ # if ( 4.5 weeks <= date <= 4.5 weeks )
+#}
+
 # ggplot of the rollmean average 
 ggplot(data = bq1_krma, aes(x = sample_date, y = krma)) +
   geom_line() +
