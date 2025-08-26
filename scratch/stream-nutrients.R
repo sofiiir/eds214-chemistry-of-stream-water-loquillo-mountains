@@ -62,13 +62,13 @@ bq1 <- bq1 |> mutate(week = week(sample_date))
 
 #calculate 9 day moving average
 #time_series <-  bq1 |> ts()
-bq1_rma <- bq1 |> 
-  mutate(kcma = rollmean(k, k = 2, fill = NA))
+bq1_krma <- bq1 |> 
+  mutate(krma = rollmean(k, k = 2, fill = NA))
 #this gets the moving average across the 2 values around the variable and only works for 
 
 
 # ggplot of the rollmean average 
-ggplot(data = bq1_rma, aes(x = sample_date, y = kcma)) +
+ggplot(data = bq1_krma, aes(x = sample_date, y = krma)) +
   geom_line() +
   labs(x = "Years",
        y = "K mg |-1")
