@@ -19,14 +19,14 @@ quebrada_3 <- read_csv(here::here("data", "QuebradaCuenca3-Bisley.csv"))
 
 puente_rm <- read_csv(here::here("data", "RioMameyesPuenteRoto.csv"))
 
-# checking the class of dates to make sure lubricate isn't necessary in this scenario
-class(quebrada_1$sample_date)
-
 #clean names of each column so they can all be in lower_snake for ease of calling 
 quebrada_1 <- quebrada_1 |> clean_names() 
 quebrada_2 <- quebrada_2 |> clean_names()
 quebrada_3 <- quebrada_3 |> clean_names()
 puente_rm <- puente_rm |> clean_names()
+
+# checking the class of dates to make sure lubricate isn't necessary in this scenario
+class(quebrada_1$sample_date)
 
 # filter for the data columns needed in the needed time frame to make plotting more efficient after analysis
 bq_1 <- quebrada_1 |> 
@@ -61,6 +61,18 @@ bq2 <- bq2 |> mutate(year = isoyear(sample_date))
 bq3 <- bq3 |> mutate(year = isoyear(sample_date))
 prm <- prm |> mutate(year = isoyear(sample_date))
 
+#assigning variable to year for a for loop
+year_mutate <- bq1$year
+day_mutate <- bq1$day
+
+
+#Adding days to following years
+for (i in seq_along(year_mutate)) {
+  if (year_mutate[i] == "1989" ){
+  mutate(day = day_mutate + 365)
+  } 
+  }
+
 #join data
 # not joining data anymore with the potential to use patchwork to piece the different graphs together, may change approach later
 #data <- bq1 |> full_join(bq2, by = "sample_date")
@@ -72,8 +84,8 @@ bq1_krma <- bq1 |>
 #this gets the moving average across the 2 values around the variable and only works for 
 
 #Adding days to following years
-if (bq1$year == 1989 ){
-  year = bq1$day + 365
+if (bq1$year == "1989" ){
+  bq1$year = bq1$day + 365
 }
 
 #create vectors to be used in for loop
