@@ -1,4 +1,5 @@
 #Recreating figure 3 from the loquillo mountain hurricane effect study
+rm(list = ls())
 
 #calling libraries
 library(tidyverse)
@@ -6,7 +7,7 @@ library(here)
 library(janitor)
 library(lubridate)
 library(patchwork)
-
+source(here("R", "moving-average-function.R"))
 
 #read in data
 bq1_data <- read_csv(here::here("data", "QuebradaCuenca1-Bisley.csv"))
@@ -25,14 +26,20 @@ compiled_data <- rbind(bq1_data, bq2_data, bq3_data, prm_data)
 compiled_data <- compiled_data |> clean_names()
 
 #filter data for necessary columns 
-bq_1 <- compiled_data |> 
+compiled_data <- compiled_data |> 
   select(sample_id, sample_date, k, na, mg, ca, nh4_n) |> 
   filter(sample_date >= "1988-01-05",
          sample_date <= "1994-12-27")
 
+#pivot longer
+
 #calculate 9 day moving average
-
-
+compiled_data$mov_avg_k <- sapply(X = as.numeric(compiled_data$sample_date),
+       FUN = moving_average,
+       sample_date = compiled_data$sample_date,
+       nutrient_conc = compiled_data$k,
+       win_size_wks = 9
+       )
 # ggplot
 
 
