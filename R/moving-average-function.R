@@ -17,7 +17,7 @@ moving_average <- function(focal_date, sample_date, nutrient_conc, win_size_wks)
   # finds the nutrients concentration associated with the identified dates
   window_nut_conc <- nutrient_conc[is_in_window]
   # calculates the means of all of the nutrients within the sample_date
-  result <- mean(window_nut_conc)
+  result <- mean(window_nut_conc, na.rm = TRUE)
   
   return(result)
 }
