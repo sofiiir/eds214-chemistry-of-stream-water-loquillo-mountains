@@ -50,7 +50,6 @@ prm <- puente_rm |>
          sample_date <= "1994-12-27")
 
 # add lubridate day column for analysis
-<<<<<<< HEAD
 bq1 <- bq1 |> mutate(day = yday(sample_date))
 bq2 <- bq2 |> mutate(day = yday(sample_date))
 bq3 <- bq3 |> mutate(day = yday(sample_date))
@@ -66,17 +65,12 @@ prm <- prm |> mutate(year = isoyear(sample_date))
 year_mutate <- bq1$year
 day_mutate <- bq1$day
 
-
 #Adding days to following years
 for (i in seq_along(year_mutate)) {
   if (year_mutate[i] == "1989" ){
   mutate(day = day_mutate + 365)
   } 
   }
-=======
-bq1 <- bq1 |> mutate(week = week(sample_date))
-bq2 <- bq2 |> mutate(week = week(sample_date))
->>>>>>> 17cf5fcba5814ce7fcddbbfc90f1dbeb5c780608
 
 #join data
 # not joining data anymore with the potential to use patchwork to piece the different graphs together, may change approach later
