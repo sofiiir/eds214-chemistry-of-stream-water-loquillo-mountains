@@ -32,6 +32,8 @@ compiled_data <- compiled_data |>
          sample_date <= "1994-12-27")
 
 #pivot longer
+compiled_data_longer <- compiled_data |> 
+  pivot_longer()
 
 #calculate 9 day moving average
 compiled_data$mov_avg_k <- sapply(X = as.numeric(compiled_data$sample_date),
@@ -40,6 +42,7 @@ compiled_data$mov_avg_k <- sapply(X = as.numeric(compiled_data$sample_date),
        nutrient_conc = compiled_data$k,
        win_size_wks = 9
        )
+
 # ggplot
 
 
