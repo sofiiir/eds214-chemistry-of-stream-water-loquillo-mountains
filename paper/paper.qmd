@@ -59,6 +59,18 @@ mov_avg_k <- compiled_data |>
   select(sample_id, sample_date, k, mov_avg_k)
 
 #calculating 9 day moving average using mutate and group by 
+mov_avg_mg <- compiled_data |> 
+  group_by(sample_id) |> #group by sample sites
+  #mutating to create a new column
+  mutate(mov_avg_mg = sapply(sample_date, #sapply to run on all of the data 
+                            moving_average, 
+                            sample_date = sample_date, 
+                            nutrient_conc = mg, 
+                            win_size_wks = 9)) |> 
+  #selecting for just necessary data to create a plot 
+  select(sample_id, sample_date, mg, mov_avg_mg)
+
+#calculating 9 day moving average using mutate and group by 
 mov_avg_no3_n <- compiled_data |> 
   group_by(sample_id) |> #group by sample sites
   #mutating to create a new column
@@ -68,7 +80,19 @@ mov_avg_no3_n <- compiled_data |>
                             nutrient_conc = no3_n, 
                             win_size_wks = 9)) |> 
   #selecting for just necessary data to create a plot 
-  select(sample_id, sample_date, k, mov_avg_no3_n)
+  select(sample_id, sample_date, no3_n, mov_avg_no3_n)
+
+#calculating 9 day moving average using mutate and group by 
+mov_avg_nh4_n <- compiled_data |> 
+  group_by(sample_id) |> #group by sample sites
+  #mutating to create a new column
+  mutate(mov_avg_nh4_n = sapply(sample_date, #sapply to run on all of the data 
+                            moving_average, 
+                            sample_date = sample_date, 
+                            nutrient_conc = nh4_n, 
+                            win_size_wks = 9)) |> 
+  #selecting for just necessary data to create a plot 
+  select(sample_id, sample_date, nh4_n, mov_avg_nh4_n)
 ```
 
 # Results
@@ -84,5 +108,17 @@ ggplot(data = mov_avg_no3_n, aes(x = sample_date, y = mov_avg_no3_n, linetype = 
   geom_line() +
   labs(x = "Years",
        y = "NO3-N ug |-1")
+
+# ggplot of the rollmean average NO3_N
+ggplot(data = mov_avg_mg, aes(x = sample_date, y = mov_avg_mg, linetype = sample_id)) +
+  geom_line() +
+  labs(x = "Years",
+       y = "Mg mg |-1")
+
+# ggplot of the rollmean average NH4_N
+ggplot(data = mov_avg_nh4_n, aes(x = sample_date, y = mov_avg_nh4_n, linetype = sample_id)) +
+  geom_line() +
+  labs(x = "Years",
+       y = "NH4-N ug |-1")
 ```
 
