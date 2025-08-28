@@ -44,29 +44,23 @@ compiled_data <- compiled_data |>
 
 # Methods
 ```{r}
-#calculate 9 day moving average 
-compiled_data$mov_avg_k <- sapply(X = compiled_data$sample_date,
-                                  FUN = moving_average,
-                                  sample_date = compiled_data$sample_date,
-                                  nutrient_conc = compiled_data$k,
-                                  win_size_wks = 9
-)
-
 #calculating 9 day moving average using mutate and group by
 mov_avg_k <- compiled_data |> 
-  group_by(sample_id) |> 
-  mutate(mov_avg_k = sapply(sample_date, 
+  group_by(sample_id) |> #group by sample sites
+  #mutating to create a new column
+  mutate(mov_avg_k = sapply(sample_date, #sapply to run on all of the data 
                             moving_average, 
                             sample_date = sample_date, 
                             nutrient_conc = k, 
                             win_size_wks = 9)) |> 
+  #selecting for just necessary data to create a plot 
   select(sample_id, sample_date, k, mov_avg_k)
 ```
 
 # Results
 ```{r}
 # ggplot of the rollmean average 
-ggplot(data = mov_avg_k, aes(x = sample_date, y = mov_avg_k)) +
+ggplot(data = mov_avg_k, aes(x = sample_date, y = mov_avg_k, linetype = sample_id)) +
   geom_line() +
   labs(x = "Years",
        y = "K mg |-1")
