@@ -112,6 +112,7 @@ compiled_data$mov_avg_k <- sapply(X = as.numeric(compiled_data$sample_date),
                                   nutrient_conc = compiled_data$k,
                                   win_size_wks = 9
 )
+
 # ggplot of the rollmean average 
 ggplot(data = bq1_krma, aes(x = sample_date, y = krma)) +
   geom_line() +
