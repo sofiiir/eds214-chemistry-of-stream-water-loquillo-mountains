@@ -23,13 +23,21 @@ source(here("R", "moving-average-function.R"))
 # Data
 ```{r}
 #read in data
-bq1_data <- read_csv(here::here("data", "QuebradaCuenca1-Bisley.csv"))
+bq1_data <- read_csv(here::here("data", "QuebradaCuenca1-Bisley.csv")) |> 
+  clean_names() |> 
+  select(sample_id, sample_date, k, no3_n, mg, ca, nh4_n)
 
-bq2_data <- read_csv(here::here("data", "QuebradaCuenca2-Bisley.csv"))
+bq2_data <- read_csv(here::here("data", "QuebradaCuenca2-Bisley.csv")) |> 
+  clean_names() |> 
+  select(sample_id, sample_date, k, no3_n, mg, ca, nh4_n)
 
-bq3_data <- read_csv(here::here("data", "QuebradaCuenca3-Bisley.csv"))
+bq3_data <- read_csv(here::here("data", "QuebradaCuenca3-Bisley.csv")) |> 
+  clean_names() |> 
+  select(sample_id, sample_date, k, no3_n, mg, ca, nh4_n)
 
-prm_data <- read_csv(here::here("data", "RioMameyesPuenteRoto.csv"))
+prm_data <- read_csv(here::here("data", "RioMameyesPuenteRoto.csv")) |> 
+  clean_names() |> 
+  select(sample_id, sample_date, k, no3_n, mg, ca, nh4_n)
 
 #join data frames
 compiled_data <- rbind(bq1_data, bq2_data, bq3_data, prm_data)
@@ -83,6 +91,18 @@ mov_avg_no3_n <- compiled_data |>
   select(sample_id, sample_date, no3_n, mov_avg_no3_n)
 
 #calculating 9 day moving average using mutate and group by 
+mov_avg_ca <- compiled_data |> 
+  group_by(sample_id) |> #group by sample sites
+  #mutating to create a new column
+  mutate(mov_avg_ca = sapply(sample_date, #sapply to run on all of the data 
+                            moving_average, 
+                            sample_date = sample_date, 
+                            nutrient_conc = ca, 
+                            win_size_wks = 9)) |> 
+  #selecting for just necessary data to create a plot 
+  select(sample_id, sample_date, ca, mov_avg_ca)
+
+#calculating 9 day moving average using mutate and group by 
 mov_avg_nh4_n <- compiled_data |> 
   group_by(sample_id) |> #group by sample sites
   #mutating to create a new column
@@ -114,6 +134,12 @@ ggplot(data = mov_avg_mg, aes(x = sample_date, y = mov_avg_mg, linetype = sample
   geom_line() +
   labs(x = "Years",
        y = "Mg mg |-1")
+
+# ggplot of the rollmean average NO3_N
+ggplot(data = mov_avg_ca, aes(x = sample_date, y = mov_avg_ca, linetype = sample_id)) +
+  geom_line() +
+  labs(x = "Years",
+       y = "Ca mg |-1")
 
 # ggplot of the rollmean average NH4_N
 ggplot(data = mov_avg_nh4_n, aes(x = sample_date, y = mov_avg_nh4_n, linetype = sample_id)) +
