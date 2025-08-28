@@ -118,33 +118,36 @@ mov_avg_nh4_n <- compiled_data |>
 # Results
 ```{r}
 # ggplot of the rollmean average k 
-ggplot(data = mov_avg_k, aes(x = sample_date, y = mov_avg_k, linetype = sample_id)) +
+k_plot <- ggplot(data = mov_avg_k, aes(x = sample_date, y = mov_avg_k, linetype = sample_id)) +
   geom_line() +
   labs(x = "Years",
        y = "K mg |-1")
 
 # ggplot of the rollmean average NO3_N
-ggplot(data = mov_avg_no3_n, aes(x = sample_date, y = mov_avg_no3_n, linetype = sample_id)) +
+no3_n_plot <- ggplot(data = mov_avg_no3_n, aes(x = sample_date, y = mov_avg_no3_n, linetype = sample_id)) +
   geom_line() +
   labs(x = "Years",
        y = "NO3-N ug |-1")
 
 # ggplot of the rollmean average NO3_N
-ggplot(data = mov_avg_mg, aes(x = sample_date, y = mov_avg_mg, linetype = sample_id)) +
+mg_plot <- ggplot(data = mov_avg_mg, aes(x = sample_date, y = mov_avg_mg, linetype = sample_id)) +
   geom_line() +
   labs(x = "Years",
        y = "Mg mg |-1")
 
 # ggplot of the rollmean average NO3_N
-ggplot(data = mov_avg_ca, aes(x = sample_date, y = mov_avg_ca, linetype = sample_id)) +
+ca_plot <- ggplot(data = mov_avg_ca, aes(x = sample_date, y = mov_avg_ca, linetype = sample_id)) +
   geom_line() +
   labs(x = "Years",
        y = "Ca mg |-1")
 
 # ggplot of the rollmean average NH4_N
-ggplot(data = mov_avg_nh4_n, aes(x = sample_date, y = mov_avg_nh4_n, linetype = sample_id)) +
+nh4_n_plot <- ggplot(data = mov_avg_nh4_n, aes(x = sample_date, y = mov_avg_nh4_n, linetype = sample_id)) +
   geom_line() +
   labs(x = "Years",
        y = "NH4-N ug |-1")
+
+k_plot / no3_n_plot / mg_plot / ca_plot / nh4_n_plot
+
 ```
 
