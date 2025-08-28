@@ -5,6 +5,8 @@ format: html
 
 # Background
 ```{r}
+#| echo: false
+
 #calling libraries
 library(tidyverse)
 library(here)
@@ -37,14 +39,14 @@ compiled_data <- compiled_data |> clean_names()
 
 #filter data for necessary columns 
 compiled_data <- compiled_data |> 
-  select(sample_id, sample_date, k, na, mg, ca, nh4_n) |> 
+  select(sample_id, sample_date, k, no3_n, mg, ca, nh4_n) |> 
   filter(sample_date >= "1988-01-05",
          sample_date <= "1994-12-27")
 ```
 
 # Methods
 ```{r}
-#calculating 9 day moving average using mutate and group by
+#calculating 9 day moving average using mutate and group by 
 mov_avg_k <- compiled_data |> 
   group_by(sample_id) |> #group by sample sites
   #mutating to create a new column
@@ -55,14 +57,32 @@ mov_avg_k <- compiled_data |>
                             win_size_wks = 9)) |> 
   #selecting for just necessary data to create a plot 
   select(sample_id, sample_date, k, mov_avg_k)
+
+#calculating 9 day moving average using mutate and group by 
+mov_avg_no3_n <- compiled_data |> 
+  group_by(sample_id) |> #group by sample sites
+  #mutating to create a new column
+  mutate(mov_avg_no3_n = sapply(sample_date, #sapply to run on all of the data 
+                            moving_average, 
+                            sample_date = sample_date, 
+                            nutrient_conc = no3_n, 
+                            win_size_wks = 9)) |> 
+  #selecting for just necessary data to create a plot 
+  select(sample_id, sample_date, k, mov_avg_no3_n)
 ```
 
 # Results
 ```{r}
-# ggplot of the rollmean average 
+# ggplot of the rollmean average k 
 ggplot(data = mov_avg_k, aes(x = sample_date, y = mov_avg_k, linetype = sample_id)) +
   geom_line() +
   labs(x = "Years",
        y = "K mg |-1")
+
+# ggplot of the rollmean average NO3_N
+ggplot(data = mov_avg_no3_n, aes(x = sample_date, y = mov_avg_no3_n, linetype = sample_id)) +
+  geom_line() +
+  labs(x = "Years",
+       y = "NO3-N ug |-1")
 ```
 
