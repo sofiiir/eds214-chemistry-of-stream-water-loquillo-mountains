@@ -10,6 +10,7 @@
 #' @export
 #'
 #' @examples
+#' 
 moving_average <- function(focal_date, sample_date, nutrient_conc, win_size_wks) {
   # identifies dates that are within the window
   is_in_window <- (sample_date > focal_date - (win_size_wks / 2) * 7) &
