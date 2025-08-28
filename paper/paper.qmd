@@ -13,7 +13,7 @@ library(lubridate)
 library(patchwork)
 library(zoo)
 
-#sourcing the moving average function
+#sourcing the moving average function for analysis of the data 
 source(here("R", "moving-average-function.R"))
 ```
 
@@ -32,7 +32,7 @@ prm_data <- read_csv(here::here("data", "RioMameyesPuenteRoto.csv"))
 #join data frames
 compiled_data <- rbind(bq1_data, bq2_data, bq3_data, prm_data)
 
-#clean data
+#clean names for easier reference to names
 compiled_data <- compiled_data |> clean_names()
 
 #filter data for necessary columns 
@@ -44,11 +44,27 @@ compiled_data <- compiled_data |>
 
 # Methods
 ```{r}
+#calculate 9 day moving average 
+compiled_data$mov_avg_k <- sapply(X = compiled_data$sample_date,
+                                  FUN = moving_average,
+                                  sample_date = compiled_data$sample_date,
+                                  nutrient_conc = compiled_data$k,
+                                  win_size_wks = 9
+)
 
+#calculating 9 day moving average using mutate and group by
+mov_avg_k <- compiled_data |> 
+  group_by(sample_id) |> 
+  mutate(mov_avg_k = moving_average(sample_date, sample_date, k, 9)) |> 
+  select(sample_id, sample_date, k, mov_avg_k)
 ```
 
 # Results
 ```{r}
-
+# ggplot of the rollmean average 
+ggplot(data = compiled_data, aes(x = sample_date, y = mov_avg_k)) +
+  geom_line() +
+  labs(x = "Years",
+       y = "K mg |-1")
 ```
 
