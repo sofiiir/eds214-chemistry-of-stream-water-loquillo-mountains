@@ -46,6 +46,11 @@ compiled_data$mov_avg_k <- sapply(X = as.numeric(compiled_data$sample_date),
        nutrient_conc = compiled_data$k,
        win_size_wks = 9
        )
+#calculating 9 day moving average using mutate and group by
+mov_avg_k <- compiled_data |> 
+  group_by(sample_id) |> 
+  mutate(mov_avg_k = moving_average(sample_date, sample_date, k, 9)) |> 
+  select(sample_id, sample_date, k, mov_avg_k)
 
 # ggplot
 
