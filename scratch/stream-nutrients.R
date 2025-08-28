@@ -9,6 +9,7 @@ library(janitor)
 library(lubridate)
 library(patchwork)
 library(zoo)
+source(here("R", "moving-average-function.R"))
 
 #read in data
 quebrada_1 <- read_csv(here::here("data", "QuebradaCuenca1-Bisley.csv"))
@@ -92,11 +93,25 @@ day_bq1 <- pull(bq1, day)
 k_bq1 <- pull(bq1, k)
 pull(bq1, day)
 
+#pivot longer
+compiled_data_longer <- compiled_data |> 
+  pivot_longer(cols = k:nh4_n,
+               names_to = "nutrients", 
+               values_to = "nutrient_concentrations")
+#this isn't working because the function is calling on one column
+
 #for loop to create moving average
 for ( in bq1){
  if (day - 31  <= day <= day + 31)
 }
 
+#calculate 9 day moving average
+compiled_data$mov_avg_k <- sapply(X = as.numeric(compiled_data$sample_date),
+                                  FUN = moving_average,
+                                  sample_date = compiled_data$sample_date,
+                                  nutrient_conc = compiled_data$k,
+                                  win_size_wks = 9
+)
 # ggplot of the rollmean average 
 ggplot(data = bq1_krma, aes(x = sample_date, y = krma)) +
   geom_line() +

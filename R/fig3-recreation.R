@@ -7,6 +7,8 @@ library(here)
 library(janitor)
 library(lubridate)
 library(patchwork)
+
+#sourcing the moving average function 
 source(here("R", "moving-average-function.R"))
 
 #read in data
@@ -21,7 +23,6 @@ prm_data <- read_csv(here::here("data", "RioMameyesPuenteRoto.csv"))
 #join data frames
 compiled_data <- rbind(bq1_data, bq2_data, bq3_data, prm_data)
 
-
 #clean data
 compiled_data <- compiled_data |> clean_names()
 
@@ -33,7 +34,10 @@ compiled_data <- compiled_data |>
 
 #pivot longer
 compiled_data_longer <- compiled_data |> 
-  pivot_longer()
+  pivot_longer(cols = k:nh4_n,
+               names_to = "nutrients", 
+               values_to = "nutrient_concentrations")
+#this isn't working because the function is calling on one column
 
 #calculate 9 day moving average
 compiled_data$mov_avg_k <- sapply(X = as.numeric(compiled_data$sample_date),
