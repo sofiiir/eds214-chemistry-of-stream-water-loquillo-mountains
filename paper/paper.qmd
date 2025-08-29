@@ -8,7 +8,7 @@ execute:
 
 # Background
 
-The course EDS-214 titled workflows and reproducibility, emphasizes a real world example of data analysis that benefits from workflow organization and reproducible code. This course has chosen Schaefer et al.'s (2000) study analyzing the effects of Hurricane Hugo on the watersheds of the Loquillo Mountain Watershed in Puerto Rico as a case stude. In this repository, figure 3 from Schaefer et al.'s (2000) paper was reproduced.
+The course EDS-214 titled workflows and reproducibility, emphasizes a real world example of data analysis that benefits from workflow organization and reproducible code. This course has chosen Schaefer et al.'s (2000) study analyzing the effects of Hurricane Hugo on the watersheds of the Loquillo Mountain Watershed in Puerto Rico as a case study. In this repository, figure 3 from Schaefer et al.'s (2000) paper was reproduced.
 
 ```{r}
 #| warning: false
@@ -17,7 +17,7 @@ The course EDS-214 titled workflows and reproducibility, emphasizes a real world
 
 #Environment initialization package installations for computers running this data set for the first time
 #*****THE LINE BELOW MUST BE UNCOMMENTED TO INITIALIZE AN ENVIRONMENT
-#source(here("R", "environment_initialization.R"))
+#source(here::here("0_environment_initialization.R"))
 
 #calling libraries
 library(tidyverse)
@@ -28,31 +28,33 @@ library(zoo)
 library(png)
 
 #sourcing the moving average function for analysis of the data 
-source(here("R", "moving-average-function.R"))
+source(here::here("R", "moving-average-function.R"))
 ```
 
 # Data
 
-Data was downloaded from the [Environmental Data Initiative](https://portal.edirepository.org/nis/metadataviewer?packageid=knb-lter-luq.20.4923064), an open source environmental database.
+Raw data is stored in the data folder. This data was processed to include only necessary data and  analyzed for the 9-week moving averages for each of the five nutrients. These wrangled data sets are stored in the outputs folder. 
+
+Raw data was downloaded from the [Environmental Data Initiative](https://portal.edirepository.org/nis/metadataviewer?packageid=knb-lter-luq.20.4923064), an open source environmental database.
 
 doi:10.6073/pasta/f31349bebdc304f758718f4798d25458
 
 ```{r}
 #| echo: false
 #read in data
-watershed_data <- read_csv(here::here("outputs", "compiled_data.csv"))
+compiled_data <- read_csv(here::here("outputs", "compiled_data.csv"))
 ```
 
 # Methods
 
 Data was cleaned and wrangled to include only necessary metrics to complete the recreation of figure 3 from Schaffer et. al. The pre-analysis product was a single dataframe containing the values for all of the locations nutrient contents.
 
-Once cleaned, the data was analysed to calculate 9-week moving averages. A moving average function was created for clarity and reproducibility. Below is an example of the code calling this function and calculating the values for the 9-week moving average for one of the five nutrients being graphed. This code was run for each of the nutrients.
+Once cleaned, the data was analysed to calculate 9-week moving averages. A moving average function was created for clarity and reproducibility. Below is an example of the code calling this function and calculating the values for the 9-week moving average for one of the five nutrients being graphed. This code was run for each of the nutrients with new data frames containing moving averages stored in the outputs folder.
 
 ```{r}
 #|eval: false
 #calculating 9 day moving average using mutate and group by 
-mov_avg_k <- watershed_data |> 
+mov_avg_k <- compiled_data |> 
   group_by(sample_id) |> #group by sample sites
   #mutating to create a new column
   mutate(mov_avg_k = sapply(sample_date, #sapply to run on all of the data 
@@ -67,6 +69,8 @@ mov_avg_k <- watershed_data |>
 
 ```{r}
 #| echo: false
+
+
 #read in moving average data sets
 mov_avg_k <- read_csv(here::here("outputs", "mov_avg_k.csv"))
 mov_avg_no3_n <- read_csv(here::here("outputs", "mov_avg_no3_n.csv"))
@@ -84,14 +88,11 @@ Each dataframe for the individual nutrients was plotted and combined into a sing
 #| warning: false
 #| message: false
 
-#displaying figure
-#fig3
-
-#show graph in quarto doc
+#sourcing the ggplotting code
 source(here::here("3_ggplotting.R"))
+#displaying figure 3
 fig3
 
-#ggsave(here::here("figs", "fig3.jpg"))
 
 ```
 

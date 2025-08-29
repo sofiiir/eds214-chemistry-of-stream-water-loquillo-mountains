@@ -5,9 +5,17 @@
 ##                                                                            ~~
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+library(tidyverse)
+library(here)
+
+#sourcing the moving average function for analysis of the data 
+source(here::here("R", "moving-average-function.R"))
+
+#read in data
+compiled_data <- read_csv(here::here("outputs", "compiled_data.csv")) 
 
 #..........calculating 9 day moving average: potassium...........
-mov_avg_k <- watershed_data |> 
+mov_avg_k <- compiled_data |> 
   group_by(sample_id) |> #group by sample sites
   #mutating to create a new column
   mutate(mov_avg_k = sapply(sample_date, #sapply to run on all of the data 
@@ -22,7 +30,7 @@ mov_avg_k <- watershed_data |>
 write_csv(mov_avg_k, "outputs/mov_avg_k.csv")
 
 #..........calculating 9 day moving average: magnesium .......... 
-mov_avg_mg <- watershed_data |> 
+mov_avg_mg <- compiled_data |> 
   group_by(sample_id) |> #group by sample sites
   #mutating to create a new column
   mutate(mov_avg_mg = sapply(sample_date, #sapply to run on all of the data 
@@ -37,7 +45,7 @@ mov_avg_mg <- watershed_data |>
 write_csv(mov_avg_mg, "outputs/mov_avg_mg.csv")
 
 #......calculating 9 day moving average: nitrate nitrogen .......
-mov_avg_no3_n <- watershed_data |> 
+mov_avg_no3_n <- compiled_data |> 
   group_by(sample_id) |> #group by sample sites
   #mutating to create a new column
   mutate(mov_avg_no3_n = sapply(sample_date, #sapply to run on all of the data 
@@ -52,7 +60,7 @@ mov_avg_no3_n <- watershed_data |>
 write_csv(mov_avg_no3_n, "outputs/mov_avg_no3_n.csv")
 
 #......calculating 9 day moving average: calcium .......
-mov_avg_ca <- watershed_data |> 
+mov_avg_ca <- compiled_data |> 
   group_by(sample_id) |> #group by sample sites
   #mutating to create a new column
   mutate(mov_avg_ca = sapply(sample_date, #sapply to run on all of the data 
@@ -67,7 +75,7 @@ mov_avg_ca <- watershed_data |>
 write_csv(mov_avg_ca, "outputs/mov_avg_ca.csv")
 
 #......calculating 9 day moving average: ammonium .......
-mov_avg_nh4_n <- watershed_data |> 
+mov_avg_nh4_n <- compiled_data |> 
   group_by(sample_id) |> #group by sample sites
   #mutating to create a new column
   mutate(mov_avg_nh4_n = sapply(sample_date, #sapply to run on all of the data 
