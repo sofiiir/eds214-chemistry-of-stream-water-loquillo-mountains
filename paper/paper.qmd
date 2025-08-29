@@ -15,10 +15,6 @@ The course EDS-214 titled workflows and reproducibility, emphasizes a real world
 #| message: false
 #| echo: false
 
-#Environment initialization package installations for computers running this data set for the first time
-#*****THE LINE BELOW MUST BE UNCOMMENTED TO INITIALIZE AN ENVIRONMENT
-#source(here::here("0_environment_initialization.R"))
-
 #calling libraries
 library(tidyverse)
 library(here)
