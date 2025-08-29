@@ -6,6 +6,17 @@ This repository includes the code used to replicate the analysis of nutrients pr
 
 ![](images/clipboard-366800664.png)
 
+## Contents:
+
+-   **Environment initialization**: R script to install necessary packages
+-   **Data cleaning**: R script run to import raw data and clean into analysis ready code
+-   **Moving average function**: R script in the R folder holding the function to calculate 9 week moving averages
+-   **Moving average calculations**: R script
+-   **Outputs folder**: Contains dataframes of clean data and data analyzed for 9 week moving average
+-   **Paper folder**: Contains main quarto doc that runs the entirety of the project from data cleaning to plotting
+-   **Figs folder**: Contains a saved png of the final graph
+-   **Scratch**: Contains spaghetti code with initial data exploration
+
 ## Data
 
 Raw data is stored in the data folder as individual files for each of the four watersheds being analyzed. The processed data was read in and processed for the necessary data to produce the final figure and can be found in the output folder.
@@ -13,17 +24,20 @@ Raw data is stored in the data folder as individual files for each of the four w
 Raw data can also be downloaded through the [EDI Data Portal](https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-luq.20.4923064).
 
 ## Analysis Script
-A function was created to perform the 9-week moving average. The function runs by identifying the date for which the 9 week average will be determined. All of the other dates in the dataframe are run to identify if they are within the 9 week centre window. The values for the nutrient contents of the streams corresponding to the dates within the data are averaged. 
 
-This function was then called by the moving average calculation script. The moving average calculation groups by site, calculates the 9 week moving average, and selects only necessary columns for each graph. The R scripts containing the function and calculations can be found in the R folder. 
+A function was created to perform the 9-week moving average. The function runs by identifying the date for which the 9 week average will be determined. All of the other dates in the dataframe are run to identify if they are within the 9 week centre window. The values for the nutrient contents of the streams corresponding to the dates within the data are averaged.
+
+This function was then called by the moving average calculation script. The moving average calculation groups by site, calculates the 9 week moving average, and selects only necessary columns for each graph. The R scripts containing the function and calculations can be found in the R folder.
 
 ## Outputs
-All of the resulting dataframes from the analysis have been provided in the output folder. This folder has a compiled data file as well as files for moving averages of all of the tested nutrients. 
 
-The final figure is stored in the figs folder. 
+All of the resulting dataframes from the analysis have been provided in the output folder. This folder has a compiled data file as well as files for moving averages of all of the tested nutrients.
+
+The final figure is stored in the figs folder.
 
 ## Supporting Code
-Code cleaning data, initializing an environment, and plotting the data can also be found in the R folder. 
+
+Code cleaning data, initializing an environment, and plotting the data can also be found in the R folder.
 
 ## References
 

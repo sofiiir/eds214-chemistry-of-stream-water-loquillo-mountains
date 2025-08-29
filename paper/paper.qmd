@@ -7,7 +7,9 @@ execute:
 ---
 
 # Background
-The course EDS-214 titled workflows and reproducibility, emphasizes a real world  example of data analysis that benefits from workflow organization and reproducible code. This course has chosen Schaefer et al.'s (2000) study analyzing the effects of Hurricane Hugo on the watersheds of the Loquillo Mountain Watershed in Puerto Rico as a case stude. In this repository, figure 3 from Schaefer et al.'s (2000) paper was reproduced. 
+
+The course EDS-214 titled workflows and reproducibility, emphasizes a real world example of data analysis that benefits from workflow organization and reproducible code. This course has chosen Schaefer et al.'s (2000) study analyzing the effects of Hurricane Hugo on the watersheds of the Loquillo Mountain Watershed in Puerto Rico as a case stude. In this repository, figure 3 from Schaefer et al.'s (2000) paper was reproduced.
+
 ```{r}
 #| warning: false
 #| message: false
@@ -29,11 +31,12 @@ library(png)
 source(here("R", "moving-average-function.R"))
 ```
 
-
 # Data
-Data was downloaded from the [Environmental Data Initiative](https://portal.edirepository.org/nis/metadataviewer?packageid=knb-lter-luq.20.4923064), an open source environmental database. 
+
+Data was downloaded from the [Environmental Data Initiative](https://portal.edirepository.org/nis/metadataviewer?packageid=knb-lter-luq.20.4923064), an open source environmental database.
 
 doi:10.6073/pasta/f31349bebdc304f758718f4798d25458
+
 ```{r}
 #| echo: false
 #read in data
@@ -41,9 +44,11 @@ watershed_data <- read_csv(here::here("outputs", "compiled_data.csv"))
 ```
 
 # Methods
-Data was cleaned and wrangled to include only necessary metrics to complete the recreation of figure 3 from Schaffer et. al. The pre-analysis product was a single dataframe containing the values for all of the locations nutrient contents. 
+
+Data was cleaned and wrangled to include only necessary metrics to complete the recreation of figure 3 from Schaffer et. al. The pre-analysis product was a single dataframe containing the values for all of the locations nutrient contents.
 
 Once cleaned, the data was analysed to calculate 9-week moving averages. A moving average function was created for clarity and reproducibility. Below is an example of the code calling this function and calculating the values for the 9-week moving average for one of the five nutrients being graphed. This code was run for each of the nutrients.
+
 ```{r}
 #|eval: false
 #calculating 9 day moving average using mutate and group by 
@@ -71,79 +76,11 @@ mov_avg_nh4_n <- read_csv(here::here("outputs", "mov_avg_nh4_n.csv"))
 ```
 
 # Results
-NEED TO FIGURE OUT HOW TO MAKE MY GRAPH APPEAR BY JUST CALLING THE PNG OR JPG
-Each dataframe for the individual nutrients was plotted and combined into a single graph. The graph below is as close a replica of the original graph from Schaefer et al. (2000) as possible given differences in data. 
+
+NEED TO FIGURE OUT HOW TO MAKE MY GRAPH APPEAR BY JUST CALLING THE PNG OR JPG Each dataframe for the individual nutrients was plotted and combined into a single graph. The graph below is as close a replica of the original graph from Schaefer et al. (2000) as possible given differences in data.
+
 ```{r}
 #| echo: false
-#creating a hurricane line
-hurricane <- as.Date("1989-09-18")
-
-#....................ggplot: moving average k ...................
-k_plot <- ggplot(data = mov_avg_k, 
-                 aes(x = sample_date, 
-                     y = mov_avg_k, 
-                     linetype = sample_id)) +
-  geom_line() +
-  #adding vertical hurricane hugo line
-  geom_vline(xintercept = hurricane, linetype = "dashed") +
-  theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank()) +
-  labs(title = "Hurricane Hugo Effects on Stream Chemistry",
-       y = "K mg |-1")
-
-#..................ggplot: moving average no3_n..................
-no3_n_plot <- ggplot(data = mov_avg_no3_n, 
-                     aes(x = sample_date, 
-                         y = mov_avg_no3_n, 
-                         linetype = sample_id)) +
-  geom_line() +
-  #adding vertical hurricane hugo line
-  geom_vline(xintercept = hurricane, linetype = "dashed") +
-  theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank()) +
-  labs(y = "NO3-N ug |-1")
-
-#....................ggplot: moving average mg...................
-mg_plot <- ggplot(data = mov_avg_mg, 
-                  aes(x = sample_date, 
-                      y = mov_avg_mg, 
-                      linetype = sample_id)) +
-  geom_line() +
-  #adding vertical hurricane hugo line
-  geom_vline(xintercept = hurricane, linetype = "dashed") +
-  theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank()) +
-  labs(y = "Mg mg |-1")
-
-#....................ggplot: moving average ca...................
-ca_plot <- ggplot(data = mov_avg_ca, 
-                  aes(x = sample_date, 
-                      y = mov_avg_ca, 
-                      linetype = sample_id)) +
-  geom_line() +
-  #adding vertical hurricane hugo line
-  geom_vline(xintercept = hurricane, linetype = "dashed") +
-  theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank()) +
-  labs(y = "Ca mg |-1")
-
-#..................ggplot: moving average nh4_n..................
-nh4_n_plot <- ggplot(data = mov_avg_nh4_n, 
-                     aes(x = sample_date, 
-                         y = mov_avg_nh4_n, 
-                         linetype = sample_id)) +
-  geom_line() +
-  #adding vertical hurricane hugo line
-  geom_vline(xintercept = hurricane, linetype = "dashed") +
-  labs(x = "Years",
-       y = "NH4-N ug |-1")
-
-#...........compilation graph containing all subgraphs...........
-fig3 <- k_plot / no3_n_plot / mg_plot / ca_plot / nh4_n_plot +
- plot_layout(guides = 'collect')
-
-#saving the the fig3 figure into the figs folder
-ggsave(here::here("figs", "fig3.png"))
 
 #displaying figure
 fig3
@@ -156,4 +93,4 @@ fig3
 
 ```
 
-Figure 3. Concentrations of 9-week averages of potassium (k), nitrate-N, magnesium (mg), calcium (ca), and ammonium-N (Nh4-n) in four streams in the Loquillo Mountain Watershed before and after Hurricane Hugo.   The vertical lines indicate Hurricane Hugo, the event of study.
+Figure 3. Concentrations of 9-week averages of potassium (k), nitrate-N, magnesium (mg), calcium (ca), and ammonium-N (Nh4-n) in four streams in the Loquillo Mountain Watershed before and after Hurricane Hugo. The vertical lines indicate Hurricane Hugo, the event of study.
