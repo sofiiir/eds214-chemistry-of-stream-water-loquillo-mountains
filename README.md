@@ -4,9 +4,9 @@ This repository includes the code used to replicate the analysis of four water s
 
 ## Data
 
-Data is stored in the data folder as individual files for each of the four watersheds being analyzed. The data is read in and processed for the necessary data to produce the final figure.
+Raw data is stored in the data folder as individual files for each of the four watersheds being analyzed. The processed data was read in and processed for the necessary data to produce the final figure and can be found in the output folder.
 
-Raw data can also be downloaded through the [EDI Data Portal](https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-luq.20.4923064) from the publication of the original
+Raw data can also be downloaded through the [EDI Data Portal](https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-luq.20.4923064).
 
 ## Analysis Script
 
