@@ -25,7 +25,7 @@ mov_avg_mg <- watershed_data |>
   #selecting for just necessary data to create a plot 
   select(sample_id, sample_date, mg, mov_avg_mg)
 
-#saving the moving average for potassium dataframe in outputs as a csv
+#saving the moving average for magnesium dataframe in outputs as a csv
 write_csv(mov_avg_mg, "outputs/mov_avg_mg.csv")
 
 #calculating 9 day moving average using mutate and group by 
@@ -40,7 +40,7 @@ mov_avg_no3_n <- watershed_data |>
   #selecting for just necessary data to create a plot 
   select(sample_id, sample_date, no3_n, mov_avg_no3_n)
 
-#saving the moving average for potassium dataframe in outputs as a csv
+#saving the moving average for nitrate nitrogen dataframe in outputs as a csv
 write_csv(mov_avg_no3_n, "outputs/mov_avg_no3_n.csv")
 
 #calculating 9 day moving average using mutate and group by 
@@ -55,7 +55,7 @@ mov_avg_ca <- watershed_data |>
   #selecting for just necessary data to create a plot 
   select(sample_id, sample_date, ca, mov_avg_ca)
 
-#saving the moving average for potassium dataframe in outputs as a csv
+#saving the moving average for calcium dataframe in outputs as a csv
 write_csv(mov_avg_ca, "outputs/mov_avg_ca.csv")
 
 #calculating 9 day moving average using mutate and group by 
@@ -70,5 +70,5 @@ mov_avg_nh4_n <- watershed_data |>
   #selecting for just necessary data to create a plot 
   select(sample_id, sample_date, nh4_n, mov_avg_nh4_n)
 
-#saving the moving average for potassium dataframe in outputs as a csv
+#saving the moving average for ammonium dataframe in outputs as a csv
 write_csv(mov_avg_nh4_n, "outputs/mov_avg_nh4_n.csv")
