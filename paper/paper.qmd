@@ -88,7 +88,7 @@ Each dataframe for the individual nutrients was plotted and combined into a sing
 #fig3
 
 #show graph in quarto doc
-source(here::here("3.ggplotting.R"))
+source(here::here("3_ggplotting.R"))
 fig3
 
 #ggsave(here::here("figs", "fig3.jpg"))

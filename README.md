@@ -1,6 +1,6 @@
 # EDS-214: Workflows and Reproducibility Case Study- Hurricane Effects on the Chemistry of Stream Water in the Loquillo Mountains Watershed, Puerto Rico
 
-This repository includes the code used to replicate the analysis of nutrients present in four water sheds in the Loquillo Mountain Watershed. The final goal is to recreate a visual of the four watersheds nutrient levels depicting nutrient levels before and after 1989 Hurricane Hugo.
+This repository includes the code used to replicate the analysis of nutrients present in four water sheds in the Loquillo Mountain Watershed. The final goal is to recreate a visual of the four watersheds nutrient levels depicting the levels before and after 1989 Hurricane Hugo.
 
 ## Workflow
 
@@ -8,14 +8,14 @@ This repository includes the code used to replicate the analysis of nutrients pr
 
 ## Contents:
 
--   [Environment initialization](: R script to install necessary packages
--   **Data cleaning**: R script run to import raw data and clean into analysis ready code
--   **Moving average function**: R script in the R folder holding the function to calculate 9 week moving averages
--   **Moving average calculations**: R script
--   **Outputs folder**: Contains dataframes of clean data and data analyzed for 9 week moving average
--   **Paper folder**: Contains main quarto doc that runs the entirety of the project from data cleaning to plotting
--   **Figs folder**: Contains a saved png of the final graph
--   **Scratch**: Contains spaghetti code with initial data exploration
+-   [Environment initialization](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/blob/main/0_environment_initialization.R): R script to install necessary packages
+-   [Data cleaning](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/blob/main/1_data-cleaning.R): R script run to import raw data and clean into analysis ready code
+-   [Moving average function](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/blob/main/R/moving-average-function.R): R script in the R folder holding the function to calculate 9 week moving averages
+-   [Moving average calculations](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/blob/main/2_moving-average-calculations.R): R script
+-   [Outputs folder](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/tree/main/outputs): Contains dataframes of clean data and data analyzed for 9 week moving average
+-   [Paper folder](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/tree/main/paper): Contains main quarto doc that runs the entirety of the project from data cleaning to plotting
+-   [Figs folder](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/tree/main/figs): Contains a saved png of the final graph
+-   [Scratch](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/tree/main/scratch): Contains spaghetti code with initial data exploration
 
 ## Data
 
