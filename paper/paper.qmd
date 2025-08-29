@@ -62,10 +62,13 @@ mov_avg_nh4_n <- read_csv(here::here("outputs", "mov_avg_nh4_n.csv"))
 ```
 
 # Results
+NEED TO FIGURE OUT HOW TO MAKE MY GRAPH APPEAR
 ```{r}
 #| echo: true
 #show graph in quarto doc
 source(here::here("R", "ggplotting.R"))
+
+
 ggsave(here::here("figs", "fig3.jpg"))
 
 ```

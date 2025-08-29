@@ -41,6 +41,6 @@ nh4_n_plot <- ggplot(data = mov_avg_nh4_n, aes(x = sample_date, y = mov_avg_nh4_
        y = "NH4-N ug |-1")
 
 fig3 <- k_plot / no3_n_plot / mg_plot / ca_plot / nh4_n_plot +
-  plot_layout(guides = 'collect')
+ plot_layout(guides = 'collect')
 
 ggsave(here::here("figs", "fig3.png"))
