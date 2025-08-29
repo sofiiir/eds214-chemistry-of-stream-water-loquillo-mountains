@@ -1,4 +1,4 @@
-# Hurricane Effects on the Chemistry of Stream Water in the Loquillo Mountains Watershed, Puerto Rico
+# EDS-214: Workflows and Reproducibility Case Study- Hurricane Effects on the Chemistry of Stream Water in the Loquillo Mountains Watershed, Puerto Rico
 
 This repository includes the code used to replicate the analysis of nutrients present in four water sheds in the Loquillo Mountain Watershed. The final goal is to recreate a visual of the four watersheds nutrient levels depicting nutrient levels before and after 1989 Hurricane Hugo.
 
@@ -13,8 +13,12 @@ Raw data is stored in the data folder as individual files for each of the four w
 Raw data can also be downloaded through the [EDI Data Portal](https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-luq.20.4923064).
 
 ## Analysis Script
+A function was created to perform the 9-week moving average. The function runs by identifying the date for which the 9 week average will be determined. All of the other dates in the dataframe are run to identify if they are within the 9 week centre window. The values for the nutrient contents of the streams corresponding to the dates within the data are averaged. 
+
+This function was then called by the moving average calculation script. The moving average calculation groups by site, calculates the 9 week moving average, and selects only necessary columns for each graph. The R scripts containing the function and calculations can be found in the R folder. 
 
 ## Supporting Code
+Code cleaning data, initializing an environment, and plotting the data can also be found in the R folder. 
 
 ## References
 
