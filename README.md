@@ -9,29 +9,32 @@ This repository includes the code used to replicate the analysis of nutrients pr
 ## Contents:
 
 -   [Environment initialization](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/blob/main/0_environment_initialization.R): R script to install necessary packages
--   [Data cleaning](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/blob/main/1_data-cleaning.R): R script run to import raw data and clean into analysis ready code
+-   [Data cleaning](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/blob/main/1_data-cleaning.R): R script run to import raw data and clean the data into analysis ready code
 -   [Moving average function](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/blob/main/R/moving-average-function.R): R script in the R folder holding the function to calculate 9 week moving averages
--   [Moving average calculations](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/blob/main/2_moving-average-calculations.R): R script
--   [Outputs folder](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/tree/main/outputs): Contains dataframes of clean data and data analyzed for 9 week moving average
+-   [Moving average calculations](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/blob/main/2_moving-average-calculations.R): R script performing the calculations for the five nutrients, potassium, nitrate-nitrogen, magnesium, calcium, and ammonium.
+-   [Outputs folder](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/tree/main/outputs): Contains data frames of clean data and data analyzed for 9 week moving average
 -   [Paper folder](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/tree/main/paper): Contains main quarto doc that runs the entirety of the project from data cleaning to plotting
 -   [Figs folder](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/tree/main/figs): Contains a saved png of the final graph
 -   [Scratch](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/tree/main/scratch): Contains spaghetti code with initial data exploration
 
+
 ## Data
 
-Raw data is stored in the data folder as individual files for each of the four watersheds being analyzed. The processed data was read in and processed for the necessary data to produce the final figure and can be found in the output folder.
+[Raw data](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/tree/main/data) is stored in the data folder as individual files for each of the four watersheds being analyzed. The processed data was read in and processed for the necessary data to produce the final figure and can be found in the output folder.
 
 Raw data can also be downloaded through the [EDI Data Portal](https://portal.edirepository.org/nis/mapbrowse?packageid=knb-lter-luq.20.4923064).
 
 ## Analysis Script
 
-A function was created to perform the 9-week moving average. The function runs by identifying the date for which the 9 week average will be determined. All of the other dates in the dataframe are run to identify if they are within the 9 week centre window. The values for the nutrient contents of the streams corresponding to the dates within the data are averaged.
+A [9-week moving average function](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/blob/main/R/moving-average-function.R) script was created. The function runs by identifying the date that the 9 week average will center around. All of the other dates in the dataframe are run to identify if they are within the 9 week window. The values for the nutrient contents of the streams corresponding to the dates within the data are averaged to calculate the 9-week moving average value.
 
-This function was then called by the moving average calculation script. The moving average calculation groups by site, calculates the 9 week moving average, and selects only necessary columns for each graph. The R scripts containing the function and calculations can be found in the R folder.
+This function was then called by the [moving average calculation](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/blob/main/2_moving-average-calculations.R) script. The moving average calculation groups by site, calculates the 9 week moving average, and selects only necessary columns for each graph. The R scripts containing the function and calculations can be found in the R folder.
+
+Plots were made by graphing 9 week moving averages by dates. The final figure is stored in the [figs](https://github.com/sofiiir/eds214-chemistry-of-stream-water-loquillo-mountains/tree/main/figs) folder. 
 
 ## Outputs
 
-All of the resulting dataframes from the analysis have been provided in the output folder. This folder has a compiled data file as well as files for moving averages of all of the tested nutrients.
+All of the resulting dataframes from the analysis have been provided in the output folder. This folder has a compiled data file as well as files for moving averages of all of the tested nutrients (potassium, nitrate-nitrogen, magnesium, calcium, and ammonium).
 
 The final figure is stored in the figs folder.
 
