@@ -7,7 +7,7 @@ execute:
 ---
 
 # Background
-The course EDS-214 titled workflows and reproducibility Shaffer et al. published a study analyzing the effects of Hurricane Hugo on the watersheds of the Loquillo Mountain Watershed in Puerto Rico. In this repository, figure 3 from Schaffer et al.'s paper was reproduced as a real world example of data analysis that benefits from workflow organization and 
+The course EDS-214 titled workflows and reproducibility, emphasizes a real world  example of data analysis that benefits from workflow organization and reproducible code. This course has chosen Schaefer et al.'s (2000) study analyzing the effects of Hurricane Hugo on the watersheds of the Loquillo Mountain Watershed in Puerto Rico as a case stude. In this repository, figure 3 from Schaefer et al.'s (2000) paper was reproduced. 
 ```{r}
 #| warning: false
 #| message: false
@@ -27,7 +27,9 @@ source(here("R", "moving-average-function.R"))
 
 
 # Data
-Data was downloaded from 
+Data was downloaded from the [Environmental Data Initiative](https://portal.edirepository.org/nis/metadataviewer?packageid=knb-lter-luq.20.4923064), an open source environmental database. 
+
+doi:10.6073/pasta/f31349bebdc304f758718f4798d25458
 ```{r}
 #| echo: false
 #read in data
@@ -35,6 +37,9 @@ watershed_data <- read_csv(here::here("outputs", "compiled_data.csv"))
 ```
 
 # Methods
+Data was cleaned and wrangled to include only necessary metrics to complete the recreation of figure 3 from Schaffer et. al. The pre-analysis product was a single dataframe containing the values for all of the locations nutrient contents. 
+
+Once cleaned, the data was analysed to calculate 9-week moving averages. A moving average function was created for clarity and reproducibility. Below is an example of the code calling this function and calculating the values for the 9-week moving average for one of the five nutrients being graphed. This code was run for each of the nutrients.
 ```{r}
 #|eval: false
 #calculating 9 day moving average using mutate and group by 
@@ -62,7 +67,8 @@ mov_avg_nh4_n <- read_csv(here::here("outputs", "mov_avg_nh4_n.csv"))
 ```
 
 # Results
-NEED TO FIGURE OUT HOW TO MAKE MY GRAPH APPEAR
+NEED TO FIGURE OUT HOW TO MAKE MY GRAPH APPEAR BY JUST CALLING THE PNG OR JPG
+Each dataframe for the individual nutrients was plotted and combined into a single graph. The graph below is as close a replica of the original graph from Schaefer et al. (2000) as possible given differences in data. 
 ```{r}
 #| echo: false
 #creating a hurricane line

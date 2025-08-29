@@ -98,13 +98,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="background" class="level1">
 <h1>Background</h1>
+<p>The course EDS-214 titled workflows and reproducibility, emphasizes a real world example of data analysis that benefits from workflow organization and reproducible code. This course has chosen Schaefer et al.’s (2000) study analyzing the effects of Hurricane Hugo on the watersheds of the Loquillo Mountain Watershed in Puerto Rico as a case stude. In this repository, figure 3 from Schaefer et al.’s (2000) paper was reproduced.</p>
 </section>
 <section id="data" class="level1">
 <h1>Data</h1>
-<p>Data was downloaded from</p>
+<p>Data was downloaded from the <a href="https://portal.edirepository.org/nis/metadataviewer?packageid=knb-lter-luq.20.4923064">Environmental Data Initiative</a>, an open source environmental database.</p>
+<p>doi:10.6073/pasta/f31349bebdc304f758718f4798d25458</p>
 </section>
 <section id="methods" class="level1">
 <h1>Methods</h1>
+<p>Data was cleaned and wrangled to include only necessary metrics to complete the recreation of figure 3 from Schaffer et. al.&nbsp;The pre-analysis product was a single dataframe containing the values for all of the locations nutrient contents.</p>
+<p>Once cleaned, the data was analysed to calculate 9-week moving averages. A moving average function was created for clarity and reproducibility. Below is an example of the code calling this function and calculating the values for the 9-week moving average for one of the five nutrients being graphed. This code was run for each of the nutrients.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#|eval: false</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">#calculating 9 day moving average using mutate and group by </span></span>
@@ -122,7 +126,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
-<p>NEED TO FIGURE OUT HOW TO MAKE MY GRAPH APPEAR</p>
+<p>NEED TO FIGURE OUT HOW TO MAKE MY GRAPH APPEAR BY JUST CALLING THE PNG OR JPG Each dataframe for the individual nutrients was plotted and combined into a single graph. The graph below is as close a replica of the original graph from Schaefer et al.&nbsp;(2000) as possible given differences in data.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div>
