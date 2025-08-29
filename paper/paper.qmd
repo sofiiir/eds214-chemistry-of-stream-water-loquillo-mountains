@@ -77,17 +77,19 @@ mov_avg_nh4_n <- read_csv(here::here("outputs", "mov_avg_nh4_n.csv"))
 
 # Results
 
-NEED TO FIGURE OUT HOW TO MAKE MY GRAPH APPEAR BY JUST CALLING THE PNG OR JPG Each dataframe for the individual nutrients was plotted and combined into a single graph. The graph below is as close a replica of the original graph from Schaefer et al. (2000) as possible given differences in data.
+Each dataframe for the individual nutrients was plotted and combined into a single graph. The graph below is as close a replica of the original graph from Schaefer et al. (2000) as possible given differences in data.
 
 ```{r}
 #| echo: false
+#| warning: false
+#| message: false
 
 #displaying figure
-fig3
+#fig3
 
 #show graph in quarto doc
-#source(here::here("R", "ggplotting.R"))
-
+source(here::here("3.ggplotting.R"))
+fig3
 
 #ggsave(here::here("figs", "fig3.jpg"))
 

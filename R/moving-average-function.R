@@ -7,10 +7,10 @@
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' 9 Day Moving Average
 #'
-#' @param focal_date 
-#' @param sample_date 
-#' @param nutrient_conc 
-#' @param win_size_wks
+#' @param focal_date defines the date which the analysis is being centered around
+#' @param sample_date a vector of all of the sample dates in the data set
+#' @param nutrient_conc refers to one nutrient tested  
+#' @param win_size_wks number of weeks moving average being based on
 #'
 #' @returns
 #' @export

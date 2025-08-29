@@ -5,6 +5,7 @@
 ##                                                                            ~~
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+rm(list = ls())
 library(tidyverse)
 library(patchwork)
 
@@ -83,4 +84,4 @@ fig3 <- k_plot / no3_n_plot / mg_plot / ca_plot / nh4_n_plot +
   plot_layout(guides = 'collect')
 
 #saving the the fig3 figure into the figs folder
-ggsave(here::here("figs", "fig3.png"))
+ggsave(here::here("figs", "fig3.png"), fig3)
