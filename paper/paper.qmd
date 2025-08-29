@@ -83,6 +83,8 @@ mov_avg_nh4_n <- read_csv(here::here("outputs", "mov_avg_nh4_n.csv"))
 
 Each dataframe for the individual nutrients was plotted and combined into a single graph. The graph below is as close a replica of the original graph from Schaefer et al. (2000) as possible given differences in data.
 
+The graph recreation from Schaefer et al. (2000), shows elevated levels of potassium, nitrate-n, magnesium, and calcium after Hurricane Hugo. Ammonium data was not avalable for the test dates.
+
 ```{r}
 #| echo: false
 #| warning: false
