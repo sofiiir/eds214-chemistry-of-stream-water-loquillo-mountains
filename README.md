@@ -17,6 +17,11 @@ A function was created to perform the 9-week moving average. The function runs b
 
 This function was then called by the moving average calculation script. The moving average calculation groups by site, calculates the 9 week moving average, and selects only necessary columns for each graph. The R scripts containing the function and calculations can be found in the R folder. 
 
+##Outputs
+All of the resulting dataframes from the analysis have been provided in the output folder. This folder has a compiled data file as well as files for moving averages of all of the tested nutrients. 
+
+The final figure is stored in the figs folder. 
+
 ## Supporting Code
 Code cleaning data, initializing an environment, and plotting the data can also be found in the R folder. 
 
