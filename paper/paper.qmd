@@ -1,5 +1,5 @@
 ---
-title: "paper"
+title: "Figure 3: "
 format: html
 execute:
   message: false
@@ -26,12 +26,15 @@ source(here("R", "moving-average-function.R"))
 
 
 # Data
+Data was downloaded from 
 ```{r}
+#| echo: false
 #read in data
 watershed_data <- read_csv(here::here("outputs", "final_data.csv"))
 ```
 
 # Methods
+
 ```{r}
 #calculating 9 day moving average using mutate and group by 
 mov_avg_k <- watershed_data |> 
@@ -143,8 +146,7 @@ nh4_n_plot <- ggplot(data = mov_avg_nh4_n, aes(x = sample_date, y = mov_avg_nh4_
 k_plot / no3_n_plot / mg_plot / ca_plot / nh4_n_plot +
   plot_layout(guides = 'collect')
 
+
 ```
 
-Figure 3. Concentrations in Bisley, Puerto Rico streams before and after Hurricane Hugo, 9-wk moving
-averages. (a) potassium, (b) nitrate-N, (c) magnesium, (d) calcium and (e) ammonium-N. The vertical lines
-mark the time of hurricane disturbance.
+Figure 3. Concentrations of potassium (k), nitrate-N, magnesium (mg), calcium (ca), and ammonium-N (Nh4-n) in four streams in the Loquillo Mountain Watershed. The  The vertical lines indicate hurricane Hugo.
