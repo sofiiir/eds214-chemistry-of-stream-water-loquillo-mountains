@@ -27,4 +27,5 @@ compiled_data <- compiled_data |>
   filter(sample_date >= "1988-01-05",
          sample_date <= "1994-12-27")
 
+#saving the compiled data dataframe in outputs as a csv
 write_csv(compiled_data, "outputs/final_data.csv")

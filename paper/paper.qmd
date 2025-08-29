@@ -30,12 +30,12 @@ Data was downloaded from
 ```{r}
 #| echo: false
 #read in data
-watershed_data <- read_csv(here::here("outputs", "final_data.csv"))
+watershed_data <- read_csv(here::here("outputs", "compiled_data.csv"))
 ```
 
 # Methods
-
 ```{r}
+#|eval: false
 #calculating 9 day moving average using mutate and group by 
 mov_avg_k <- watershed_data |> 
   group_by(sample_id) |> #group by sample sites
@@ -48,53 +48,16 @@ mov_avg_k <- watershed_data |>
   #selecting for just necessary data to create a plot 
   select(sample_id, sample_date, k, mov_avg_k)
 
-#calculating 9 day moving average using mutate and group by 
-mov_avg_mg <- watershed_data |> 
-  group_by(sample_id) |> #group by sample sites
-  #mutating to create a new column
-  mutate(mov_avg_mg = sapply(sample_date, #sapply to run on all of the data 
-                            moving_average, 
-                            sample_date = sample_date, 
-                            nutrient_conc = mg, 
-                            win_size_wks = 9)) |> 
-  #selecting for just necessary data to create a plot 
-  select(sample_id, sample_date, mg, mov_avg_mg)
+```
 
-#calculating 9 day moving average using mutate and group by 
-mov_avg_no3_n <- watershed_data |> 
-  group_by(sample_id) |> #group by sample sites
-  #mutating to create a new column
-  mutate(mov_avg_no3_n = sapply(sample_date, #sapply to run on all of the data 
-                            moving_average, 
-                            sample_date = sample_date, 
-                            nutrient_conc = no3_n, 
-                            win_size_wks = 9)) |> 
-  #selecting for just necessary data to create a plot 
-  select(sample_id, sample_date, no3_n, mov_avg_no3_n)
-
-#calculating 9 day moving average using mutate and group by 
-mov_avg_ca <- watershed_data |> 
-  group_by(sample_id) |> #group by sample sites
-  #mutating to create a new column
-  mutate(mov_avg_ca = sapply(sample_date, #sapply to run on all of the data 
-                            moving_average, 
-                            sample_date = sample_date, 
-                            nutrient_conc = ca, 
-                            win_size_wks = 9)) |> 
-  #selecting for just necessary data to create a plot 
-  select(sample_id, sample_date, ca, mov_avg_ca)
-
-#calculating 9 day moving average using mutate and group by 
-mov_avg_nh4_n <- watershed_data |> 
-  group_by(sample_id) |> #group by sample sites
-  #mutating to create a new column
-  mutate(mov_avg_nh4_n = sapply(sample_date, #sapply to run on all of the data 
-                            moving_average, 
-                            sample_date = sample_date, 
-                            nutrient_conc = nh4_n, 
-                            win_size_wks = 9)) |> 
-  #selecting for just necessary data to create a plot 
-  select(sample_id, sample_date, nh4_n, mov_avg_nh4_n)
+```{r}
+#| echo: false
+#read in moving average data sets
+mov_avg_k <- read_csv(here::here("outputs", "mov_avg_k.csv"))
+mov_avg_no3_n <- read_csv(here::here("outputs", "mov_avg_no3_n.csv"))
+mov_avg_mg <- read_csv(here::here("outputs", "mov_avg_mg.csv"))
+mov_avg_ca <- read_csv(here::here("outputs", "mov_avg_ca.csv"))
+mov_avg_nh4_n <- read_csv(here::here("outputs", "mov_avg_nh4_n.csv"))
 ```
 
 # Results
