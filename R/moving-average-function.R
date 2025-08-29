@@ -7,16 +7,19 @@
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' 9 Day Moving Average
 #'
-#' @param focal_date defines the date which the analysis is being centered around
-#' @param sample_date a vector of all of the sample dates in the data set
-#' @param nutrient_conc refers to one nutrient tested  
-#' @param win_size_wks number of weeks moving average being based on
+#' @param focal_date A date which the analysis is being centered around
+#' @param sample_date A vector of dates of all of the sample dates in the data set
+#' @param nutrient_conc A variable that references a numeric column of one nutrient tested  
+#' @param win_size_wks A number indicating the number of weeks moving average is based on
 #'
 #' @returns
 #' @export
 #'
 #' @examples
-#' 
+#' moving_average(focal_date = 1998-03-12, 
+#'    sample_date = date_column, 
+#'    nutrient_conc = k,
+#'    win_size_wks = 9)
 moving_average <- function(focal_date, sample_date, nutrient_conc, win_size_wks) {
   # identifies dates that are within the window
   is_in_window <- (sample_date > focal_date - (win_size_wks / 2) * 7) &
