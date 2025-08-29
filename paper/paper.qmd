@@ -78,7 +78,7 @@ Each dataframe for the individual nutrients was plotted and combined into a sing
 #creating a hurricane line
 hurricane <- as.Date("1989-09-18")
 
-# ggplot of the moving  average k 
+#....................ggplot: moving average k ...................
 k_plot <- ggplot(data = mov_avg_k, 
                  aes(x = sample_date, 
                      y = mov_avg_k, 
@@ -91,7 +91,7 @@ k_plot <- ggplot(data = mov_avg_k,
   labs(title = "Hurricane Hugo Effects on Stream Chemistry",
        y = "K mg |-1")
 
-# ggplot of the moving average NO3_N
+#..................ggplot: moving average no3_n..................
 no3_n_plot <- ggplot(data = mov_avg_no3_n, 
                      aes(x = sample_date, 
                          y = mov_avg_no3_n, 
@@ -103,7 +103,7 @@ no3_n_plot <- ggplot(data = mov_avg_no3_n,
         axis.text.x = element_blank()) +
   labs(y = "NO3-N ug |-1")
 
-# ggplot of the moving average NO3_N
+#....................ggplot: moving average mg...................
 mg_plot <- ggplot(data = mov_avg_mg, 
                   aes(x = sample_date, 
                       y = mov_avg_mg, 
@@ -115,7 +115,7 @@ mg_plot <- ggplot(data = mov_avg_mg,
         axis.text.x = element_blank()) +
   labs(y = "Mg mg |-1")
 
-# ggplot of the moving average NO3_N
+#....................ggplot: moving average ca...................
 ca_plot <- ggplot(data = mov_avg_ca, 
                   aes(x = sample_date, 
                       y = mov_avg_ca, 
@@ -127,7 +127,7 @@ ca_plot <- ggplot(data = mov_avg_ca,
         axis.text.x = element_blank()) +
   labs(y = "Ca mg |-1")
 
-# ggplot of the moving average NH4_N
+#..................ggplot: moving average nh4_n..................
 nh4_n_plot <- ggplot(data = mov_avg_nh4_n, 
                      aes(x = sample_date, 
                          y = mov_avg_nh4_n, 
@@ -138,7 +138,7 @@ nh4_n_plot <- ggplot(data = mov_avg_nh4_n,
   labs(x = "Years",
        y = "NH4-N ug |-1")
 
-#compiling the data to create one graph with all of the required subgraphs
+#...........compilation graph containing all subgraphs...........
 fig3 <- k_plot / no3_n_plot / mg_plot / ca_plot / nh4_n_plot +
  plot_layout(guides = 'collect')
 

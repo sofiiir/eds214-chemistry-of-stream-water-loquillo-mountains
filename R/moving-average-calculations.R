@@ -6,7 +6,7 @@
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#calculating 9 day moving average for potassium 
+#..........calculating 9 day moving average: potassium...........
 mov_avg_k <- watershed_data |> 
   group_by(sample_id) |> #group by sample sites
   #mutating to create a new column
@@ -21,7 +21,7 @@ mov_avg_k <- watershed_data |>
 #saving the moving average for potassium dataframe in outputs as a csv
 write_csv(mov_avg_k, "outputs/mov_avg_k.csv")
 
-#calculating 9 day moving average for magnesium 
+#..........calculating 9 day moving average: magnesium .......... 
 mov_avg_mg <- watershed_data |> 
   group_by(sample_id) |> #group by sample sites
   #mutating to create a new column
@@ -36,7 +36,7 @@ mov_avg_mg <- watershed_data |>
 #saving the moving average for magnesium dataframe in outputs as a csv
 write_csv(mov_avg_mg, "outputs/mov_avg_mg.csv")
 
-#calculating 9 day moving average for nitrate nitrogen 
+#......calculating 9 day moving average: nitrate nitrogen .......
 mov_avg_no3_n <- watershed_data |> 
   group_by(sample_id) |> #group by sample sites
   #mutating to create a new column
@@ -51,7 +51,7 @@ mov_avg_no3_n <- watershed_data |>
 #saving the moving average for nitrate nitrogen dataframe in outputs as a csv
 write_csv(mov_avg_no3_n, "outputs/mov_avg_no3_n.csv")
 
-#calculating 9 day moving average for calcium 
+#......calculating 9 day moving average: calcium .......
 mov_avg_ca <- watershed_data |> 
   group_by(sample_id) |> #group by sample sites
   #mutating to create a new column
@@ -66,7 +66,7 @@ mov_avg_ca <- watershed_data |>
 #saving the moving average for calcium dataframe in outputs as a csv
 write_csv(mov_avg_ca, "outputs/mov_avg_ca.csv")
 
-#calculating 9 day moving average for ammonium 
+#......calculating 9 day moving average: ammonium .......
 mov_avg_nh4_n <- watershed_data |> 
   group_by(sample_id) |> #group by sample sites
   #mutating to create a new column
