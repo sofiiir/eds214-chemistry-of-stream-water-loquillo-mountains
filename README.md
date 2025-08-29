@@ -1,6 +1,10 @@
 # Hurricane Effects on the Chemistry of Stream Water in the Loquillo Mountains Watershed, Puerto Rico
 
-This repository includes the code used to replicate the analysis of four water sheds in the Loquillo Mountain Watershed. The final goal is to recreate a visual of the four watersheds nutrient levels both before and after 1989 Hurricane Hugo.
+This repository includes the code used to replicate the analysis of nutrients present in four water sheds in the Loquillo Mountain Watershed. The final goal is to recreate a visual of the four watersheds nutrient levels depicting nutrient levels before and after 1989 Hurricane Hugo.
+
+## Workflow
+
+![](images/clipboard-366800664.png)
 
 ## Data
 
