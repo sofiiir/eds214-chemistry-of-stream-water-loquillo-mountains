@@ -19,6 +19,7 @@ library(janitor)
 library(lubridate)
 library(patchwork)
 library(zoo)
+library(png)
 
 #sourcing the moving average function for analysis of the data 
 source(here("R", "moving-average-function.R"))
@@ -62,53 +63,10 @@ mov_avg_nh4_n <- read_csv(here::here("outputs", "mov_avg_nh4_n.csv"))
 
 # Results
 ```{r}
-#| echo: false
-
-#creating a hurricane line
-hurricane <- as.Date("1989-09-18")
-
-# ggplot of the rollmean average k 
-k_plot <- ggplot(data = mov_avg_k, aes(x = sample_date, y = mov_avg_k, linetype = sample_id)) +
-  geom_line() +
-  geom_vline(xintercept = hurricane, linetype = "dashed") +
-  theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank()) +
-  labs(y = "K mg |-1")
-
-# ggplot of the rollmean average NO3_N
-no3_n_plot <- ggplot(data = mov_avg_no3_n, aes(x = sample_date, y = mov_avg_no3_n, linetype = sample_id)) +
-  geom_line() +
-  geom_vline(xintercept = hurricane, linetype = "dashed") +
-  theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank()) +
-  labs(y = "NO3-N ug |-1")
-
-# ggplot of the rollmean average NO3_N
-mg_plot <- ggplot(data = mov_avg_mg, aes(x = sample_date, y = mov_avg_mg, linetype = sample_id)) +
-  geom_line() +
-  geom_vline(xintercept = hurricane, linetype = "dashed") +
-  theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank()) +
-  labs(y = "Mg mg |-1")
-
-# ggplot of the rollmean average NO3_N
-ca_plot <- ggplot(data = mov_avg_ca, aes(x = sample_date, y = mov_avg_ca, linetype = sample_id)) +
-  geom_line() +
-  geom_vline(xintercept = hurricane, linetype = "dashed") +
-  theme(axis.title.x = element_blank(),
-        axis.text.x = element_blank()) +
-  labs(y = "Ca mg |-1")
-
-# ggplot of the rollmean average NH4_N
-nh4_n_plot <- ggplot(data = mov_avg_nh4_n, aes(x = sample_date, y = mov_avg_nh4_n, linetype = sample_id)) +
-  geom_line() +
-  geom_vline(xintercept = hurricane, linetype = "dashed") +
-  labs(x = "Years",
-       y = "NH4-N ug |-1")
-
-k_plot / no3_n_plot / mg_plot / ca_plot / nh4_n_plot +
-  plot_layout(guides = 'collect')
-
+#| echo: true
+#show graph in quarto doc
+source(here::here("R", "ggplotting.R"))
+ggsave(here::here("figs", "fig3.jpg"))
 
 ```
 
