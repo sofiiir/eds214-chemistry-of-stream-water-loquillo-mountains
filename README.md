@@ -8,7 +8,7 @@ This repository includes the code used to replicate the analysis of nutrients pr
 
 ## Contents:
 
--   **Environment initialization**: R script to install necessary packages
+-   [Environment initialization](: R script to install necessary packages
 -   **Data cleaning**: R script run to import raw data and clean into analysis ready code
 -   **Moving average function**: R script in the R folder holding the function to calculate 9 week moving averages
 -   **Moving average calculations**: R script
